@@ -7,7 +7,7 @@
       type="date"
       format="dd/MM/yyyy"
       value-format="yyyy-MM-dd"
-      @change="value => { $emit('input', value) }"
+      @input="value => { $emit('input', value) }"
     ></el-date-picker>
   </el-form-item>
 </template>

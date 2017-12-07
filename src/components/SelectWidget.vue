@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label="label">
-    <el-select :value="value" @change="value => { $emit('input', value) }">
+    <el-select :value="value" @input="value => { $emit('input', value) }">
       <el-option
         v-for="item in options"
         :key="item"
