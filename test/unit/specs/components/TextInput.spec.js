@@ -54,7 +54,7 @@ describe('TextInput.vue', () => {
         },
         props: ['label', 'placeholder'],
         data: {
-          value: ''
+          value: 'Hi'
         },
         components: {TextInput},
         propsData: {
@@ -67,6 +67,7 @@ describe('TextInput.vue', () => {
       return Vue.nextTick()
         .then(() => {
           const input = vm.$el.querySelector('input')
+          expect(input.value).toEqual('Hi')
           input.value = 'hello'
           input.dispatchEvent(new Event('input'))
           return Vue.nextTick()
