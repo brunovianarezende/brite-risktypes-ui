@@ -7,6 +7,11 @@
   >
   <div class="add-modal">
     <h1>Add Insurance</h1>
+    <component
+      :key="widget.id"
+      v-for="widget in widgets()"
+      v-bind="widget.props"
+      :is="widget.type"></component>
     <div class="buttons-container">
       <el-button class="save-add" v-on:click="onSaveButtonClick" type="primary">Save</el-button>
       <el-button class="cancel-add" v-on:click="onCancelButtonClick">Cancel</el-button>
@@ -21,13 +26,24 @@ export default {
   props: ['onAddSuccess'],
   data () {
     return {
-      contact: {}
+      button: 'el-button'
     }
   },
   methods: {
     onSaveButtonClick () {
     },
     onCancelButtonClick () {
+    },
+    widgets () {
+      return [
+        {
+          id: 1,
+          type: 'el-button',
+          props: {
+            type: 'warning'
+          }
+        }
+      ]
     }
   },
   components: {
