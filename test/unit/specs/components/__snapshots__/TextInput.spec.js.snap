@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput.vue interface should render correctly 1`] = `
+<form
+  class="el-form"
+>
+  <div
+    class="el-form-item"
+  >
+    <label
+      class="el-form-item__label"
+    >
+      The label
+    </label>
+    <div
+      class="el-form-item__content"
+    >
+      <div
+        class="el-input"
+      >
+        <!---->
+        <input
+          autocomplete="off"
+          class="el-input__inner"
+          placeholder="The placeholder"
+          rows="2"
+          type="text"
+          validateevent="true"
+        />
+        <!---->
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+  </div>
+</form>
+`;
+
+exports[`TextInput.vue interface should support v-model 1`] = `
+<form
+  class="el-form"
+>
+  <div>
+    hello
+  </div>
+  <div
+    class="el-form-item"
+  >
+    <label
+      class="el-form-item__label"
+    >
+      The label
+    </label>
+    <div
+      class="el-form-item__content"
+    >
+      <div
+        class="el-input"
+      >
+        <!---->
+        <input
+          autocomplete="off"
+          class="el-input__inner"
+          placeholder="The placeholder"
+          rows="2"
+          type="text"
+          validateevent="true"
+        />
+        <!---->
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+  </div>
+</form>
+`;
