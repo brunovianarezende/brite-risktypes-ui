@@ -99,7 +99,7 @@ export default {
       return new Cleave.NumeralFormatter(
                 undefined,
                 0,
-                2,
+                this.numDecimalPositions === 0 ? 0 : this.numDecimalPositions || 2,
                 'thousand',
                 false,
                 true,
@@ -107,6 +107,7 @@ export default {
             )
     }
   },
+  props: [...Input.props, 'numDecimalPositions'],
   methods: {
     handleInput (event) {
       const value = this.formatter.format(event.target.value)
