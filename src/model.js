@@ -23,20 +23,43 @@ export class FullType {
 export class InsuranceInstance {
   constructor (fullType) {
     this.fullType = fullType
+
+    this.instanceValues = {}
+    this.fullType.attributes.forEach(attribute => {
+      this.instanceValues[attribute.id] = null
+    })
   }
 
   getWidgets () {
+    const self = this
     return this.fullType.attributes.map((attribute) => {
       const result = {
         id: attribute.id
       }
-      if (attribute.type === 'text') {
-        result.type = 'TextInput'
-      }
+      result.type = {
+        text: 'text-widget',
+        date: 'date-widget',
+        enum: 'select-widget',
+        numeric: 'numeric-widget',
+        int: 'integer-widget'
+      }[attribute.type]
+
       result.props = {
         label: attribute.name,
-        placeholder: attribute.description
+        placeholder: attribute.description,
+        value: self.instanceValues[attribute.id]
       }
+
+      if (attribute.type === 'enum') {
+        result.props.options = attribute.allowed_values
+      }
+
+      result.events = {
+        input (v) {
+          self.instanceValues[attribute.id] = v
+        }
+      }
+
       return result
     })
   }
