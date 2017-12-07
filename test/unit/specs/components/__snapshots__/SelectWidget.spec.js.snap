@@ -1,0 +1,427 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select.vue interface should render correctly 1`] = `
+<form
+  class="el-form"
+>
+  <div
+    class="el-form-item"
+  >
+    <label
+      class="el-form-item__label"
+    >
+      The label
+    </label>
+    <div
+      class="el-form-item__content"
+    >
+      <div
+        class="el-select"
+      >
+        <!---->
+        <div
+          class="el-input el-input--suffix"
+        >
+          <!---->
+          <input
+            autocomplete="off"
+            class="el-input__inner"
+            placeholder="Select"
+            readonly="readonly"
+            rows="2"
+            size=""
+            type="text"
+          />
+          <!---->
+          <span
+            class="el-input__suffix"
+          >
+            <span
+              class="el-input__suffix-inner"
+            >
+              <i
+                class="el-select__caret el-input__icon el-icon-arrow-up"
+              />
+              <!---->
+            </span>
+            <!---->
+          </span>
+          <!---->
+        </div>
+        <div
+          class="el-select-dropdown el-popper"
+          style="display: none;"
+        >
+          <div
+            class="el-scrollbar"
+            style=""
+          >
+            <div
+              class="el-select-dropdown__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default"
+            >
+              <ul
+                class="el-scrollbar__view el-select-dropdown__list"
+              >
+                <!---->
+                <li
+                  class="el-select-dropdown__item"
+                >
+                  <span>
+                    a
+                  </span>
+                </li>
+                <li
+                  class="el-select-dropdown__item"
+                >
+                  <span>
+                    B
+                  </span>
+                </li>
+                <li
+                  class="el-select-dropdown__item"
+                >
+                  <span>
+                    c
+                  </span>
+                </li>
+                <div
+                  class="resize-triggers"
+                >
+                  <div
+                    class="expand-trigger"
+                  >
+                    <div
+                      style="width: 1px; height: 1px;"
+                    />
+                  </div>
+                  <div
+                    class="contract-trigger"
+                  />
+                </div>
+              </ul>
+            </div>
+            <div
+              class="el-scrollbar__bar is-horizontal"
+            >
+              <div
+                class="el-scrollbar__thumb"
+                style="-webkit-transform: translateX(0%);"
+              />
+            </div>
+            <div
+              class="el-scrollbar__bar is-vertical"
+            >
+              <div
+                class="el-scrollbar__thumb"
+                style="-webkit-transform: translateY(0%);"
+              />
+            </div>
+          </div>
+          <!---->
+        </div>
+        <div
+          class="resize-triggers"
+        >
+          <div
+            class="expand-trigger"
+          >
+            <div
+              style="width: 1px; height: 1px;"
+            />
+          </div>
+          <div
+            class="contract-trigger"
+          />
+        </div>
+      </div>
+      <!---->
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Select.vue interface should support v-model 1`] = `
+<form
+  class="el-form"
+>
+  <div>
+    c
+  </div>
+  <div
+    class="el-form-item"
+  >
+    <label
+      class="el-form-item__label"
+    >
+      The label
+    </label>
+    <div
+      class="el-form-item__content"
+    >
+      <div
+        class="el-select"
+      >
+        <!---->
+        <div
+          class="el-input el-input--suffix"
+        >
+          <!---->
+          <input
+            autocomplete="off"
+            class="el-input__inner"
+            placeholder="Select"
+            readonly="readonly"
+            rows="2"
+            size=""
+            type="text"
+          />
+          <!---->
+          <span
+            class="el-input__suffix"
+          >
+            <span
+              class="el-input__suffix-inner"
+            >
+              <i
+                class="el-select__caret el-input__icon el-icon-arrow-up"
+              />
+              <!---->
+            </span>
+            <!---->
+          </span>
+          <!---->
+        </div>
+        <div
+          class="el-select-dropdown el-popper"
+          style="display: none;"
+        >
+          <div
+            class="el-scrollbar"
+            style=""
+          >
+            <div
+              class="el-select-dropdown__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default"
+            >
+              <ul
+                class="el-scrollbar__view el-select-dropdown__list"
+              >
+                <!---->
+                <li
+                  class="el-select-dropdown__item"
+                >
+                  <span>
+                    a
+                  </span>
+                </li>
+                <li
+                  class="el-select-dropdown__item"
+                >
+                  <span>
+                    B
+                  </span>
+                </li>
+                <li
+                  class="el-select-dropdown__item selected"
+                >
+                  <span>
+                    c
+                  </span>
+                </li>
+                <div
+                  class="resize-triggers"
+                >
+                  <div
+                    class="expand-trigger"
+                  >
+                    <div
+                      style="width: 1px; height: 1px;"
+                    />
+                  </div>
+                  <div
+                    class="contract-trigger"
+                  />
+                </div>
+              </ul>
+            </div>
+            <div
+              class="el-scrollbar__bar is-horizontal"
+            >
+              <div
+                class="el-scrollbar__thumb"
+                style="-webkit-transform: translateX(0%);"
+              />
+            </div>
+            <div
+              class="el-scrollbar__bar is-vertical"
+            >
+              <div
+                class="el-scrollbar__thumb"
+                style="-webkit-transform: translateY(0%);"
+              />
+            </div>
+          </div>
+          <!---->
+        </div>
+        <div
+          class="resize-triggers"
+        >
+          <div
+            class="expand-trigger"
+          >
+            <div
+              style="width: 1px; height: 1px;"
+            />
+          </div>
+          <div
+            class="contract-trigger"
+          />
+        </div>
+      </div>
+      <!---->
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Select.vue interface should support v-model 2`] = `
+<form
+  class="el-form"
+>
+  <div>
+    B
+  </div>
+  <div
+    class="el-form-item"
+  >
+    <label
+      class="el-form-item__label"
+    >
+      The label
+    </label>
+    <div
+      class="el-form-item__content"
+    >
+      <div
+        class="el-select"
+      >
+        <!---->
+        <div
+          class="el-input el-input--suffix"
+        >
+          <!---->
+          <input
+            autocomplete="off"
+            class="el-input__inner"
+            placeholder="Select"
+            readonly="readonly"
+            rows="2"
+            size=""
+            type="text"
+          />
+          <!---->
+          <span
+            class="el-input__suffix"
+          >
+            <span
+              class="el-input__suffix-inner"
+            >
+              <i
+                class="el-select__caret el-input__icon el-icon-arrow-up"
+              />
+              <!---->
+            </span>
+            <!---->
+          </span>
+          <!---->
+        </div>
+        <div
+          class="el-select-dropdown el-popper"
+          style="display: none;"
+        >
+          <div
+            class="el-scrollbar"
+            style=""
+          >
+            <div
+              class="el-select-dropdown__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default"
+            >
+              <ul
+                class="el-scrollbar__view el-select-dropdown__list"
+              >
+                <!---->
+                <li
+                  class="el-select-dropdown__item"
+                >
+                  <span>
+                    a
+                  </span>
+                </li>
+                <li
+                  class="el-select-dropdown__item selected hover"
+                >
+                  <span>
+                    B
+                  </span>
+                </li>
+                <li
+                  class="el-select-dropdown__item"
+                >
+                  <span>
+                    c
+                  </span>
+                </li>
+                <div
+                  class="resize-triggers"
+                >
+                  <div
+                    class="expand-trigger"
+                  >
+                    <div
+                      style="width: 1px; height: 1px;"
+                    />
+                  </div>
+                  <div
+                    class="contract-trigger"
+                  />
+                </div>
+              </ul>
+            </div>
+            <div
+              class="el-scrollbar__bar is-horizontal"
+            >
+              <div
+                class="el-scrollbar__thumb"
+                style="-webkit-transform: translateX(NaN%);"
+              />
+            </div>
+            <div
+              class="el-scrollbar__bar is-vertical"
+            >
+              <div
+                class="el-scrollbar__thumb"
+                style="-webkit-transform: translateY(NaN%);"
+              />
+            </div>
+          </div>
+          <!---->
+        </div>
+        <div
+          class="resize-triggers"
+        >
+          <div
+            class="expand-trigger"
+          >
+            <div
+              style="width: 1px; height: 1px;"
+            />
+          </div>
+          <div
+            class="contract-trigger"
+          />
+        </div>
+      </div>
+      <!---->
+    </div>
+  </div>
+</form>
+`;
