@@ -2,6 +2,7 @@ import Vue from 'vue'
 import TypesList from '@/components/TypesList'
 import {buildStore} from '@/store'
 import {registerGlobalComponents} from '@/utils'
+import {simulateClick} from './utils'
 
 registerGlobalComponents()
 
@@ -61,6 +62,34 @@ describe('TypesList.vue', () => {
         vm.value = type1
         expect(vm.isAddButtonDisabled()).toEqual(false)
       })
+    })
+  })
+
+  describe('interface', () => {
+    const type1 = {id: 1, name: 'name 1', description: 'description 1'}
+    const type2 = {id: 2, name: 'name 2', description: 'description 2'}
+
+    const mockStore = buildStore([
+      type1, type2
+    ])
+
+    it('should open add insurance modal when one clicks on "add" button', () => {
+      const Constructor = Vue.extend(TypesList)
+      const vm = new Constructor({store: mockStore}).$mount()
+      vm.value = type1
+      return Vue.nextTick()
+        .then(() => {
+          const addInsuranceButton = vm.$el.querySelector('.add-insurance-button')
+          simulateClick(vm, addInsuranceButton)
+          return Vue.nextTick()
+        })
+        .then(() => {
+          // NOTE: this selector won't return the full modal code, probably due to
+          // transition issues.
+          const selector = 'div[data-modal="add-insurance-modal"]'
+          const modal = vm.$el.querySelector(selector)
+          expect(modal).toEqual(expect.anything())
+        })
     })
   })
 })

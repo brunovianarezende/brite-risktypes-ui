@@ -11,4 +11,4 @@ export const buildStore = (types = []) => {
   })
 }
 
-export default buildStore([])
+export default buildStore([{id: 1, name: 'TheName', description: 'The descriptionThe descriptionThe descriptionThe descriptionThe descriptionThe descriptionThe description'}])

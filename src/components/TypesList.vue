@@ -1,5 +1,6 @@
 <template>
   <div>
+    <add-insurance-modal />
     <el-row>
       <el-col :span="24">
         <div>
@@ -18,7 +19,11 @@
                 </el-option>
               </el-select>
             </el-form-item>
-            <el-button :disabled="isAddButtonDisabled()">Add</el-button>
+            <el-button
+              class="add-insurance-button"
+              :disabled="isAddButtonDisabled()"
+              @click="addButtonClicked"
+              >Add</el-button>
           </el-form>
         </div>
       </el-col>
@@ -28,6 +33,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import AddInsuranceModal from './InsuranceAdd'
 
 export default {
   name: 'TypesList',
@@ -53,9 +59,13 @@ export default {
     },
     isAddButtonDisabled () {
       return this.value == null
+    },
+    addButtonClicked () {
+      this.$modal.show('add-insurance-modal')
     }
   },
   components: {
+    AddInsuranceModal
   }
 }
 </script>
