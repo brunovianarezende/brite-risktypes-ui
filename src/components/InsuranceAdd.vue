@@ -27,19 +27,60 @@
 
 <script>
 import {IntegerWidget, NumericWidget, DateWidget, TextWidget, SelectWidget} from './Widgets'
+import {FullType, InsuranceInstance}  from '../model'
+
+    const fullTypeRaw = JSON.parse(`
+{
+  "name": "Stolen car",
+  "description": "Insurance for when a car is stolen",
+  "attributes": [
+    {
+      "id": 1,
+      "description": "When the insurance begins to take effect",
+      "name": "Start date",
+      "type": "date"
+    },
+    {
+      "id": 2,
+      "description": "When the insurance finishes",
+      "name": "End date",
+      "type": "date"
+    },
+    {
+      "id": 3,
+      "description": "How much to pay in the case of the car is stolen",
+      "name": "Value",
+      "type": "numeric"
+    },
+    {
+      "id": 4,
+      "description": "The maximal number of days the client has to communicate the theft",
+      "name": "Communication days",
+      "type": "int"
+    },
+    {
+      "id": 5,
+      "description": "Has the client being stolen before?",
+      "name": "Customer history",
+      "allowed_values": [
+        "Never stolen",
+        "Stolen once",
+        "Stolen multiple times"
+      ],
+      "type": "enum"
+    }
+  ]
+}
+`)
+  const fullType = new FullType(fullTypeRaw)
+  const insuranceInstance = new InsuranceInstance(fullType)
 
 export default {
   name: 'AddInsuranceModal',
   props: ['onAddSuccess'],
   data () {
     return {
-      instance: {
-        '1': null,
-        '2': null,
-        '3': null,
-        '4': null,
-        '5': null
-      }
+      instance: insuranceInstance.instanceValues
     }
   },
   methods: {
@@ -48,69 +89,7 @@ export default {
     onCancelButtonClick () {
     },
     widgets () {
-      const self = this
-      const inputEvent = (id) => (v) => {
-        self.instance[id + ''] = v
-      }
-      return [
-        {
-          id: 1,
-          type: 'text-widget',
-          props: {
-            label: 'Name',
-            placeholder: 'The customer name'
-          },
-          events: {
-            input: inputEvent(1)
-          }
-        },
-        {
-          id: 2,
-          type: 'integer-widget',
-          props: {
-            label: 'Age',
-            placeholder: 'The customer age'
-          },
-          events: {
-            input: inputEvent(2)
-          }
-        },
-        {
-          id: 3,
-          type: 'date-widget',
-          props: {
-            label: 'Birthdate',
-            placeholder: 'The customer Birthdate',
-            value: self.instance['3']
-          },
-          events: {
-            input: inputEvent(3)
-          }
-        },
-        {
-          id: 4,
-          type: 'numeric-widget',
-          props: {
-            label: 'Amount to pay',
-            placeholder: 'How many dollars must we pay?'
-          },
-          events: {
-            input: inputEvent(4)
-          }
-        },
-        {
-          id: 5,
-          type: 'select-widget',
-          props: {
-            label: 'Married',
-            options: ['Yes', 'No'],
-            value: self.instance['5']
-          },
-          events: {
-            input: inputEvent(5)
-          }
-        }
-      ]
+      return insuranceInstance.getWidgets()
     }
   },
   components: {
