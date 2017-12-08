@@ -1,6 +1,7 @@
 <template>
   <el-form-item :label="label">
     <el-date-picker
+      class="date-widget"
       ref='_datepicker'
       :placeholder="placeholder"
       :value="value"
@@ -18,3 +19,9 @@ export default {
   props: ['value', 'label', 'placeholder']
 }
 </script>
+
+<style lang="scss" scoped>
+.date-widget {
+  width: 350px;
+}
+</style>
