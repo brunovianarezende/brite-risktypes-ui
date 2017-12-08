@@ -1,5 +1,5 @@
 import {buildStore} from '@/store'
-import {FullType} from '@/model'
+import {FullType, InsuranceInstance} from '@/model'
 import {setApi} from '@/api'
 
 describe('store.js', () => {
@@ -15,6 +15,17 @@ describe('store.js', () => {
 
         store.commit('setTypes', [obj3])
         expect(store.state.types).toEqual([obj3])
+      })
+    })
+
+    describe('addInsurance', () => {
+      it('should add a new insurance to the list of insurances', () => {
+        const type1 = new FullType({id: 1, name: 'insurance1', attributes: []})
+        const instance = new InsuranceInstance(type1)
+        const store = buildStore([type1], [])
+
+        store.commit('addInsurance', instance)
+        expect(store.state.insurances).toEqual([instance])
       })
     })
   })
@@ -36,6 +47,27 @@ describe('store.js', () => {
           .then(() => {
             expect(store.state.types).toEqual([obj1, obj2])
             expect(api.searchTypes.mock.calls).toEqual([[]])
+          })
+      })
+    })
+
+    describe('postInsurance', () => {
+      it('should call the API to post the insurance to the server', () => {
+        const type1 = new FullType({id: 1, name: 'Insurance1', description: 'Description1', attributes: []})
+
+        const api = new function () {
+          this.addInsurance = jest.fn((insurance) => Promise.resolve(1))
+        }()
+        setApi(api)
+
+        const store = buildStore([type1])
+
+        const instance = new InsuranceInstance(type1)
+        return store.dispatch('addInsurance', instance)
+          .then(() => {
+            const expected = new InsuranceInstance(type1, 1)
+            expect(store.state.insurances).toEqual([expected])
+            expect(api.addInsurance.mock.calls).toEqual([[instance]])
           })
       })
     })

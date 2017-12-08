@@ -7,8 +7,7 @@
   @before-open="beforeOpen"
   >
   <div class="add-modal">
-    <h1>Add Insurance</h1>
-    {{ instance }}
+    <h1>Add Insurance - {{insuranceInstance.fullType.name}}</h1>
     <el-form>
       <component
         :key="widget.id"
@@ -35,13 +34,17 @@ export default {
   props: ['onAddSuccess'],
   data () {
     return {
+      insuranceInstance: null,
       instance: {},
       widgets: []
     }
   },
   methods: {
     onSaveButtonClick () {
-      this.$modal.hide('add-insurance-modal')
+      this.$store.dispatch('addInsurance', this.insuranceInstance)
+        .then(() => {
+          this.$modal.hide('add-insurance-modal')
+        })
     },
     onCancelButtonClick () {
       this.$modal.hide('add-insurance-modal')
@@ -50,6 +53,7 @@ export default {
       this.instance = {}
       const type = event.params.type
       const insuranceInstance = new InsuranceInstance(type)
+      this.insuranceInstance = insuranceInstance
       this.instance = insuranceInstance.bindReactivity(this.instance)
       this.widgets = insuranceInstance.getWidgets()
     }

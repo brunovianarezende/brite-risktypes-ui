@@ -1,6 +1,7 @@
 <template>
   <div>
     <add-insurance-modal />
+    <view-insurance-modal />
     <el-row>
       <el-col :span="24">
         <div>
@@ -29,12 +30,46 @@
         </div>
       </el-col>
     </el-row>
+    <el-row>
+      <el-col :span="24">
+        <div>
+          <el-table
+            :data="insurances"
+            stripe
+            border
+            empty-text="There are no insurances"
+            style="width: 100%">
+            <el-table-column
+              align="left"
+              prop="fullType.name"
+              label="Type">
+            </el-table-column>
+            <el-table-column
+              align="left"
+              prop="id"
+              label="Id" />
+            <el-table-column
+              fixed="right"
+              label="Actions"
+              width="120"
+              >
+              <template slot-scope="scope">
+                <a class="view-insurance-icon" v-on:click="viewInsurance(scope.row)"><icon name="eye" scale="2" color="blue" /></a>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import AddInsuranceModal from './InsuranceAdd'
+import ViewInsuranceModal from './InsuranceView'
+import 'vue-awesome/icons/eye'
+import Icon from 'vue-awesome/components/Icon'
 
 export default {
   name: 'TypesList',
@@ -45,7 +80,7 @@ export default {
     }
   },
   computed: mapState([
-    'types'
+    'types', 'insurances'
   ]),
   methods: {
     label (item) {
@@ -63,10 +98,13 @@ export default {
     },
     addButtonClicked () {
       this.$modal.show('add-insurance-modal', {type: this.value})
+    },
+    viewInsurance (insurance) {
+      this.$modal.show('view-insurance-modal', {insurance})
     }
   },
   components: {
-    AddInsuranceModal
+    AddInsuranceModal, ViewInsuranceModal, Icon
   }
 }
 </script>

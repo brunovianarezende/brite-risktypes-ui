@@ -111,115 +111,224 @@ describe('model', () => {
         return widgets
       }
 
-      it('should return the correct widget when type is text', () => {
-        const instance = new InsuranceInstance(createType([
-          {
-            id: 47,
-            name: 'Customer name',
-            description: 'The customer name',
-            type: 'text'
-          }
-        ]))
-        expect(t(instance.getWidgets())).toEqual([
-          {
-            id: 47,
-            type: 'text-widget',
-            props: {
-              value: null,
-              label: 'Customer name',
-              placeholder: 'The customer name'
+      describe('edit widgets', () => {
+        it('should return the correct widget when type is text', () => {
+          const instance = new InsuranceInstance(createType([
+            {
+              id: 47,
+              name: 'Customer name',
+              description: 'The customer name',
+              type: 'text'
             }
-          }
-        ])
+          ]))
+          expect(t(instance.getWidgets())).toEqual([
+            {
+              id: 47,
+              type: 'text-widget',
+              props: {
+                value: null,
+                label: 'Customer name',
+                placeholder: 'The customer name'
+              }
+            }
+          ])
+        })
+
+        it('should return the correct widget when type is date', () => {
+          const instance = new InsuranceInstance(createType([
+            {
+              id: 47,
+              name: 'Date',
+              description: 'The Date',
+              type: 'date'
+            }
+          ]))
+          expect(t(instance.getWidgets())).toEqual([
+            {
+              id: 47,
+              type: 'date-widget',
+              props: {
+                value: null,
+                label: 'Date',
+                placeholder: 'The Date'
+              }
+            }
+          ])
+        })
+        it('should return the correct widget when type is int', () => {
+          const instance = new InsuranceInstance(createType([
+            {
+              id: 47,
+              name: 'Int',
+              description: 'The int',
+              type: 'int'
+            }
+          ]))
+          expect(t(instance.getWidgets())).toEqual([
+            {
+              id: 47,
+              type: 'integer-widget',
+              props: {
+                value: null,
+                label: 'Int',
+                placeholder: 'The int'
+              }
+            }
+          ])
+        })
+
+        it('should return the correct widget when type is numeric', () => {
+          const instance = new InsuranceInstance(createType([
+            {
+              id: 47,
+              name: 'Numeric',
+              description: 'The Numeric',
+              type: 'numeric'
+            }
+          ]))
+          expect(t(instance.getWidgets())).toEqual([
+            {
+              id: 47,
+              type: 'numeric-widget',
+              props: {
+                value: null,
+                label: 'Numeric',
+                placeholder: 'The Numeric'
+              }
+            }
+          ])
+        })
+
+        it('should return the correct widget when type is enum', () => {
+          const instance = new InsuranceInstance(createType([
+            {
+              id: 47,
+              name: 'Enum',
+              description: 'The Enum',
+              type: 'enum',
+              allowed_values: ['Never stolen', 'Stolen once', 'Stolen multiple times']
+            }
+          ]))
+          expect(t(instance.getWidgets())).toEqual([
+            {
+              id: 47,
+              type: 'select-widget',
+              props: {
+                label: 'Enum',
+                placeholder: 'The Enum',
+                value: null,
+                options: ['Never stolen', 'Stolen once', 'Stolen multiple times']
+              }
+            }
+          ])
+        })
       })
 
-      it('should return the correct widget when type is date', () => {
-        const instance = new InsuranceInstance(createType([
-          {
-            id: 47,
-            name: 'Date',
-            description: 'The Date',
-            type: 'date'
-          }
-        ]))
-        expect(t(instance.getWidgets())).toEqual([
-          {
-            id: 47,
-            type: 'date-widget',
-            props: {
-              value: null,
-              label: 'Date',
-              placeholder: 'The Date'
+      describe('view widgets', () => {
+        it('should return the correct widget when type is text', () => {
+          const instance = new InsuranceInstance(createType([
+            {
+              id: 47,
+              name: 'Customer name',
+              description: 'The customer name',
+              type: 'text'
             }
-          }
-        ])
-      })
-      it('should return the correct widget when type is int', () => {
-        const instance = new InsuranceInstance(createType([
-          {
-            id: 47,
-            name: 'Int',
-            description: 'The int',
-            type: 'int'
-          }
-        ]))
-        expect(t(instance.getWidgets())).toEqual([
-          {
-            id: 47,
-            type: 'integer-widget',
-            props: {
-              value: null,
-              label: 'Int',
-              placeholder: 'The int'
+          ]))
+          expect(instance.getWidgets('view')).toEqual([
+            {
+              id: 47,
+              type: 'base-view-widget',
+              props: {
+                value: null,
+                label: 'Customer name'
+              }
             }
-          }
-        ])
-      })
+          ])
+        })
 
-      it('should return the correct widget when type is numeric', () => {
-        const instance = new InsuranceInstance(createType([
-          {
-            id: 47,
-            name: 'Numeric',
-            description: 'The Numeric',
-            type: 'numeric'
-          }
-        ]))
-        expect(t(instance.getWidgets())).toEqual([
-          {
-            id: 47,
-            type: 'numeric-widget',
-            props: {
-              value: null,
-              label: 'Numeric',
-              placeholder: 'The Numeric'
+        it('should return the correct widget when type is date', () => {
+          const instance = new InsuranceInstance(createType([
+            {
+              id: 47,
+              name: 'Date',
+              description: 'The Date',
+              type: 'date'
             }
-          }
-        ])
-      })
+          ]))
+          expect(instance.getWidgets('view')).toEqual([
+            {
+              id: 47,
+              type: 'date-view-widget',
+              props: {
+                value: null,
+                label: 'Date'
+              }
+            }
+          ])
+        })
+        it('should return the correct widget when type is int', () => {
+          const instance = new InsuranceInstance(createType([
+            {
+              id: 47,
+              name: 'Int',
+              description: 'The int',
+              type: 'int'
+            }
+          ]))
+          expect(instance.getWidgets('view')).toEqual([
+            {
+              id: 47,
+              type: 'base-view-widget',
+              props: {
+                value: null,
+                label: 'Int'
+              }
+            }
+          ])
+        })
 
-      it('should return the correct widget when type is enum', () => {
-        const instance = new InsuranceInstance(createType([
-          {
-            id: 47,
-            name: 'Enum',
-            description: 'The Enum',
-            type: 'enum',
-            allowed_values: ['Never stolen', 'Stolen once', 'Stolen multiple times']
-          }
-        ]))
-        expect(t(instance.getWidgets())).toEqual([
-          {
-            id: 47,
-            type: 'select-widget',
-            props: {
-              label: 'Enum',
-              placeholder: 'The Enum',
-              value: null,
-              options: ['Never stolen', 'Stolen once', 'Stolen multiple times']
+        it('should return the correct widget when type is numeric', () => {
+          const instance = new InsuranceInstance(createType([
+            {
+              id: 47,
+              name: 'Numeric',
+              description: 'The Numeric',
+              type: 'numeric'
             }
-          }
-        ])
+          ]))
+          expect(instance.getWidgets('view')).toEqual([
+            {
+              id: 47,
+              type: 'base-view-widget',
+              props: {
+                value: null,
+                label: 'Numeric'
+              }
+            }
+          ])
+        })
+
+        it('should return the correct widget when type is enum', () => {
+          const instance = new InsuranceInstance(createType([
+            {
+              id: 47,
+              name: 'Enum',
+              description: 'The Enum',
+              type: 'enum',
+              allowed_values: ['Never stolen', 'Stolen once', 'Stolen multiple times']
+            }
+          ]))
+          expect(instance.getWidgets('view')).toEqual([
+            {
+              id: 47,
+              type: 'base-view-widget',
+              props: {
+                label: 'Enum',
+                value: null
+              }
+            }
+          ])
+        })
       })
     })
   })

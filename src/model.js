@@ -25,8 +25,9 @@ export class FullType {
 }
 
 export class InsuranceInstance {
-  constructor (fullType) {
+  constructor (fullType, id) {
     this.fullType = fullType
+    this.id = id
 
     this.instanceValues = {}
     this.fullType.attributes.forEach(attribute => {
@@ -40,39 +41,57 @@ export class InsuranceInstance {
     return this.instanceValues
   }
 
-  getWidgets () {
+  getWidgets (mode = 'edit') {
     const self = this
-    return this.fullType.attributes.map((attribute) => {
-      const result = {
-        id: attribute.id
-      }
-      result.type = {
-        text: 'text-widget',
-        date: 'date-widget',
-        enum: 'select-widget',
-        numeric: 'numeric-widget',
-        int: 'integer-widget'
-      }[attribute.type]
-
-      result.props = {
-        label: attribute.name,
-        placeholder: attribute.description,
-        value: self.instanceValues[attribute.id]
-      }
-
-      if (attribute.type === 'enum') {
-        result.props.options = attribute.allowed_values
-      }
-
-      // Need to add proper unit tests for the events
-      result.events = {
-        input (v) {
-          self.instanceValues[attribute.id] = v
-          result.props.value = v
+    if (mode === 'edit') {
+      return this.fullType.attributes.map((attribute) => {
+        const result = {
+          id: attribute.id
         }
-      }
+        result.type = {
+          text: 'text-widget',
+          date: 'date-widget',
+          enum: 'select-widget',
+          numeric: 'numeric-widget',
+          int: 'integer-widget'
+        }[attribute.type]
 
-      return result
-    })
+        result.props = {
+          label: attribute.name,
+          placeholder: attribute.description,
+          value: self.instanceValues[attribute.id]
+        }
+
+        if (attribute.type === 'enum') {
+          result.props.options = attribute.allowed_values
+        }
+
+        // Need to add proper unit tests for the events
+        result.events = {
+          input (v) {
+            self.instanceValues[attribute.id] = v
+            result.props.value = v
+          }
+        }
+
+        return result
+      })
+    } else {
+      return this.fullType.attributes.map((attribute) => {
+        const result = {
+          id: attribute.id
+        }
+        result.type = {
+          date: 'date-view-widget'
+        }[attribute.type] || 'base-view-widget'
+
+        result.props = {
+          label: attribute.name,
+          value: self.instanceValues[attribute.id]
+        }
+
+        return result
+      })
+    }
   }
 }

@@ -21,6 +21,12 @@ class TempApi {
     this.types = [
       type1, type2
     ]
+    this.nextId = 0
+  }
+
+  addInsurance (insurance) {
+    this.nextId++
+    return Promise.resolve(this.nextId)
   }
 
   searchTypes () {
@@ -40,6 +46,12 @@ class TempApi {
 class RealApi {
   constructor (axiosInstance) {
     this.axiosInstance = axiosInstance
+    this.nextId = 0
+  }
+
+  addInsurance (insurance) {
+    this.nextId++
+    return Promise.resolve(this.nextId)
   }
 
   searchTypes () {
