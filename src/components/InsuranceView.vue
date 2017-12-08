@@ -7,7 +7,7 @@
   @before-open="beforeOpen"
   >
   <div class="view-modal">
-    <h1>Insurance - {{insuranceInstance.fullType.name}}</h1>
+    <h1>Insurance - {{typeName}}</h1>
     <el-form>
       <component
         :key="widget.id"
@@ -41,6 +41,15 @@ export default {
     beforeOpen (event) {
       this.insuranceInstance = event.params.insurance
       this.widgets = this.insuranceInstance.getWidgets('view')
+    }
+  },
+  computed: {
+    typeName () {
+      if (this.insuranceInstance !== null) {
+        return this.insuranceInstance.fullType.name
+      } else {
+        return ''
+      }
     }
   },
   components: {

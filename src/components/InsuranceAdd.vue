@@ -7,7 +7,7 @@
   @before-open="beforeOpen"
   >
   <div class="add-modal">
-    <h1>Add Insurance - {{insuranceInstance.fullType.name}}</h1>
+    <h1>Add Insurance - {{typeName}}</h1>
     <el-form>
       <component
         :key="widget.id"
@@ -37,6 +37,15 @@ export default {
       insuranceInstance: null,
       instance: {},
       widgets: []
+    }
+  },
+  computed: {
+    typeName () {
+      if (this.insuranceInstance !== null) {
+        return this.insuranceInstance.fullType.name
+      } else {
+        return ''
+      }
     }
   },
   methods: {
