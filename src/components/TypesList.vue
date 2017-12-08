@@ -62,7 +62,7 @@ export default {
       return this.value == null
     },
     addButtonClicked () {
-      this.$modal.show('add-insurance-modal')
+      this.$modal.show('add-insurance-modal', {type: this.value})
     }
   },
   components: {

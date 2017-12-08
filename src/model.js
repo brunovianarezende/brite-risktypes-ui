@@ -34,6 +34,12 @@ export class InsuranceInstance {
     })
   }
 
+  bindReactivity (reactiveObject) {
+    // Vue reactivity thing, I'm not sure how to unit test it
+    this.instanceValues = Object.assign({}, reactiveObject, this.instanceValues)
+    return this.instanceValues
+  }
+
   getWidgets () {
     const self = this
     return this.fullType.attributes.map((attribute) => {
@@ -58,9 +64,11 @@ export class InsuranceInstance {
         result.props.options = attribute.allowed_values
       }
 
+      // Need to add proper unit tests for the events
       result.events = {
         input (v) {
           self.instanceValues[attribute.id] = v
+          result.props.value = v
         }
       }
 

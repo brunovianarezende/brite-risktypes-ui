@@ -4,6 +4,7 @@
   height="auto"
   width="80%"
   scrollable
+  @before-open="beforeOpen"
   >
   <div class="add-modal">
     <h1>Add Insurance</h1>
@@ -11,7 +12,7 @@
     <el-form>
       <component
         :key="widget.id"
-        v-for="widget in widgets()"
+        v-for="widget in widgets"
         v-bind="widget.props"
         v-on="widget.events || {}"
         :is="widget.type"></component>
@@ -27,60 +28,15 @@
 
 <script>
 import {IntegerWidget, NumericWidget, DateWidget, TextWidget, SelectWidget} from './Widgets'
-import {FullType, InsuranceInstance}  from '../model'
-
-    const fullTypeRaw = JSON.parse(`
-{
-  "name": "Stolen car",
-  "description": "Insurance for when a car is stolen",
-  "attributes": [
-    {
-      "id": 1,
-      "description": "When the insurance begins to take effect",
-      "name": "Start date",
-      "type": "date"
-    },
-    {
-      "id": 2,
-      "description": "When the insurance finishes",
-      "name": "End date",
-      "type": "date"
-    },
-    {
-      "id": 3,
-      "description": "How much to pay in the case of the car is stolen",
-      "name": "Value",
-      "type": "numeric"
-    },
-    {
-      "id": 4,
-      "description": "The maximal number of days the client has to communicate the theft",
-      "name": "Communication days",
-      "type": "int"
-    },
-    {
-      "id": 5,
-      "description": "Has the client being stolen before?",
-      "name": "Customer history",
-      "allowed_values": [
-        "Never stolen",
-        "Stolen once",
-        "Stolen multiple times"
-      ],
-      "type": "enum"
-    }
-  ]
-}
-`)
-  const fullType = new FullType(fullTypeRaw)
-  const insuranceInstance = new InsuranceInstance(fullType)
+import { InsuranceInstance}  from '../model'
 
 export default {
   name: 'AddInsuranceModal',
   props: ['onAddSuccess'],
   data () {
     return {
-      instance: insuranceInstance.instanceValues
+      instance: {},
+      widgets: []
     }
   },
   methods: {
@@ -90,8 +46,11 @@ export default {
     onCancelButtonClick () {
       this.$modal.hide('add-insurance-modal')
     },
-    widgets () {
-      return insuranceInstance.getWidgets()
+    beforeOpen (event) {
+      const type = event.params.type
+      const insuranceInstance = new InsuranceInstance(type)
+      this.instance = insuranceInstance.bindReactivity(this.instance)
+      this.widgets = insuranceInstance.getWidgets()
     }
   },
   components: {
