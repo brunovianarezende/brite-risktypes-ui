@@ -9,6 +9,7 @@
               <el-select
                 @visible-change="visibleChange"
                 v-model="value"
+                value-key="id"
                 placeholder="Insurance Type">
                 <el-option
                   v-for="item in types"

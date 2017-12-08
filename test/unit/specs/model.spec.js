@@ -10,6 +10,14 @@ describe('model', () => {
   }
 
   describe('FullType', () => {
+    it('should return the type id', () => {
+      const insuranceType = new FullType({
+        id: 2,
+        name: 'Stolen car'
+      })
+      expect(insuranceType.id).toEqual(2)
+    })
+
     it('should return the type name', () => {
       const insuranceType = new FullType({
         name: 'Stolen car'

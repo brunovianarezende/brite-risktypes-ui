@@ -3,6 +3,10 @@ export class FullType {
     this.typeInfo = typeInfo
   }
 
+  get id () {
+    return this.typeInfo.id
+  }
+
   get name () {
     return this.typeInfo.name
   }
