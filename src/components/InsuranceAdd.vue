@@ -85,8 +85,10 @@ export default {
   },
   methods: {
     onSaveButtonClick () {
+      this.$modal.hide('add-insurance-modal')
     },
     onCancelButtonClick () {
+      this.$modal.hide('add-insurance-modal')
     },
     widgets () {
       return insuranceInstance.getWidgets()
