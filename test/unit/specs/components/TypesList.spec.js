@@ -1,16 +1,21 @@
 import Vue from 'vue'
 import TypesList from '@/components/TypesList'
 import {buildStore} from '@/store'
+import {FullType} from '@/model'
 import {registerGlobalComponents} from '@/utils'
 import {simulateClick} from './utils'
 
 registerGlobalComponents()
 
+const _t = (rawType) => {
+  return new FullType({...rawType, attributes: []})
+}
+
 describe('TypesList.vue', () => {
   describe('methods', () => {
     describe('label', () => {
-      const type1 = {id: 1, name: 'name 1', description: 'description 1'}
-      const type2 = {id: 2, name: 'name 2', description: 'description 2'}
+      const type1 = _t({id: 1, name: 'name 1', description: 'description 1'})
+      const type2 = _t({id: 2, name: 'name 2', description: 'description 2'})
 
       const mockStore = buildStore([
         type1, type2
@@ -43,8 +48,8 @@ describe('TypesList.vue', () => {
     })
 
     describe('isAddButtonDisabled', () => {
-      const type1 = {id: 1, name: 'name 1', description: 'description 1'}
-      const type2 = {id: 2, name: 'name 2', description: 'description 2'}
+      const type1 = _t({id: 1, name: 'name 1', description: 'description 1'})
+      const type2 = _t({id: 2, name: 'name 2', description: 'description 2'})
 
       const mockStore = buildStore([
         type1, type2
@@ -66,8 +71,8 @@ describe('TypesList.vue', () => {
   })
 
   describe('interface', () => {
-    const type1 = {id: 1, name: 'name 1', description: 'description 1'}
-    const type2 = {id: 2, name: 'name 2', description: 'description 2'}
+    const type1 = _t({id: 1, name: 'name 1', description: 'description 1'})
+    const type2 = _t({id: 2, name: 'name 2', description: 'description 2'})
 
     const mockStore = buildStore([
       type1, type2

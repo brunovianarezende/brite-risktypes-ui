@@ -38,9 +38,28 @@ class TempApi {
 }
 
 class RealApi {
+  constructor (axiosInstance) {
+    this.axiosInstance = axiosInstance
+  }
+
+  searchTypes () {
+    return this.axiosInstance
+      .get('/search/types/')
+      .then((result) => {
+        return result.data.types.map((t) => new FullType(t))
+      })
+  }
+
+  getType (id) {
+    return this.axiosInstance
+      .get(`/types/${id}/`)
+      .then((result) => {
+        return new FullType(result.data)
+      })
+  }
 }
 
-export const buildApi = (useTempApi = true) => {
+export const buildApi = (useTempApi = false) => {
   if (useTempApi) {
     return new TempApi()
   } else {

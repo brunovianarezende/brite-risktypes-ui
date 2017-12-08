@@ -28,7 +28,7 @@
 
 <script>
 import {IntegerWidget, NumericWidget, DateWidget, TextWidget, SelectWidget} from './Widgets'
-import { InsuranceInstance}  from '../model'
+import {InsuranceInstance} from '../model'
 
 export default {
   name: 'AddInsuranceModal',
@@ -47,6 +47,7 @@ export default {
       this.$modal.hide('add-insurance-modal')
     },
     beforeOpen (event) {
+      this.instance = {}
       const type = event.params.type
       const insuranceInstance = new InsuranceInstance(type)
       this.instance = insuranceInstance.bindReactivity(this.instance)
